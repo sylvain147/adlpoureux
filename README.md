@@ -31,7 +31,8 @@ Hello maman
 - Produit
 - Nombre
 - Prix
-#BAck-office :
+
+#Back-office :
 - Générateur de facture
 - CRUD produit
 - Gestionnaire utilisateurs
