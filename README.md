@@ -9,43 +9,56 @@ Gris foncé : #404040
 
 
 # Front-office :
-##Produits : 
-- Nom
+## Produits : 
+- id
+- titre
 - Description
-- Prix
-- Tag
+- créateur
+- Tags
 - Catégories[]
-- Créateur(utilisateur)
 
-##Catégories : 
+## Catégories : 
+- id 
 - Nom
+- description
 - Produits
 
-##Utilisateur : 
+## tag :
+- id
+- nom
+
+## Utilisateur : 
+- id
 - Nom
 - Prenom
+- pseudo
 - Date de naissance
-- Adresses
-- Produits
-- Autorisations
-- Commandes[]
-- profiles
+- pavatar
+- profile
 
-## profile :
- - Nom
- - identifiant
- 
+## Créateur : 
+- id
+- utilisateur
+- produits
 
-##Comandes : 
+## Client : 
+- id
+- utilisateur
+- Commandes
+
+## Comandes : 
+- id 
 - Ligne de commande []
 - Utilisateur
 
-##Ligne de commande : 
+## Ligne de commande : 
+- id
 - Produit
 - Nombre
 - Prix
+- Prix total
 
-#Back-office :
+# Back-office :
 - Générateur de facture
 - CRUD produit
 - Gestionnaire utilisateurs
