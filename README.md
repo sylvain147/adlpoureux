@@ -28,7 +28,13 @@ Gris foncé : #404040
 - Adresses
 - Produits
 - Autorisations
-- Commandes
+- Commandes[]
+- profiles
+
+## profile :
+ - Nom
+ - identifiant
+ 
 
 ##Comandes : 
 - Ligne de commande []
