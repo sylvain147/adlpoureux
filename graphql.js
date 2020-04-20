@@ -17,6 +17,7 @@ type Mutation {
 }
 
 type Query {
+  products : [Product]!
   product(id: Int!): Product!
   user(id: Int!): User!
 }
@@ -63,6 +64,10 @@ const resolvers = {
     async product(_,{id},context) {
       const product = await context.connection.query(`SELECT * from product where product_id = ?`, [id]) 
       return product[0]
+    },
+    async products(_,{},context) {
+      const products = await context.connection.query(`SELECT * from product`)
+      return products;
     }
   },
   Mutation: {
