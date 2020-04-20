@@ -37,6 +37,7 @@ getUsers = async (req, res) => {
     });
 };
 createUser = async (req,res) => {
+    console.log('there')
     const connection = await getConnection();
     let body = req.body;
     let username = body.username;
@@ -50,8 +51,9 @@ createUser = async (req,res) => {
         res.send(400);
         return;
     }
+    console.log('here')
     bcrypt.hash(password,10, (err,hash)=> {
-        connection.query('INSERT INTO user set ?', {username : username, password : hash, email : email, data : JSON.stringify(body), created_at: new Date()}, (error, resutl) => {
+        connection.query('INSERT INTO user set ?', {username : username, password : hash, email : email, created_at: new Date()}, (error, resutl) => {
             if (error) {
                 res.sendStatus(400)
             }

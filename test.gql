@@ -1,0 +1,46 @@
+type Mutation {
+	createProduct(productInput: ProductInput!): Product!
+	createUser(userInput: UserInput!): User!
+}
+
+type Query {
+	product(id: String!): Product!
+	user(id: String!): User!
+}
+type User {
+	user_id : Int!
+	firstname : String
+	lastname : String
+	username : String!
+	birthday : String
+	email : String!
+	created_at : String!
+	deleted_at : String
+}
+
+type Product {
+	product_id : Int
+	title : String!
+	description : String
+	price : Float!
+	user_id : Int!
+	user : User!
+	slug : String!
+	created_at : String!
+	deleted_at : String
+}
+input ProductInput {
+	title : String
+	description : String
+	price : Float!
+	user_id : Int!
+	slug : String!
+}
+input UserInput {
+	firstname : String
+	lastname : String
+	username : String!
+	birthday : String
+	email : String!
+	password : String!
+}

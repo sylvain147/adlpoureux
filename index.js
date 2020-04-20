@@ -7,7 +7,7 @@ let jwt = require('jsonwebtoken');
 let cors = require('cors');
 
 
-const article = require('./src/article');
+const product = require('./src/product');
 const user = require('./src/user');
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,8 +16,9 @@ app.use(bodyParser.urlencoded({
 }));
 /** Articles **/
 //GET functions
-app.get('/api/products', product.getArticles);
-app.get('/api/product', product.getArticle);
+app.get('/api/products', product.getProducts);
+app.get('/api/product', product.getProduct);
+app.get('/api/product/:id', product.getProduct);
 app.get('/api/slug', product.createSlug);
 
 //POST functions

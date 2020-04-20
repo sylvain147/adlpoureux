@@ -19,37 +19,41 @@ const getConnection = async () => {
     return connection
 };
 
-getArticle = async (req,res) => {
-    isNaN(req.query.id) ? await getArticleBySlug(req,res): await getArticleById(req,res)  ;
+getProduct = async (req,res) => {
+    isNaN(req.params.id) ? await getProductBySlug(req,res): await getProductById(req,res)  ;
 
 };
-getArticleById = async (req,res) => {
+getProductById = async (req,res) => {
     const connection = await getConnection();
-    connection.query('SELECT * from article where article_id = ?', [req.query.id], function (error, results) {
+    connection.query('SELECT * from product where product_id = ?', [req.params.id], function (error, results) {
         res.send(results);
     });
 };
 
-getArticleBySlug = async (req,res) => {
+getProductBySlug = async (req,res) => {
     const connection = await getConnection();
-
-    connection.query('SELECT * from article where slug = ?', [req.query.id], function (error, results) {
+    connection.query('SELECT *, url from product  LEFT JOIN picture_product on product.product_id = picture_product.product_id where slug = ?', [req.params.id], function (error, results) {
+        console.log(error)
+        console.log(results)
         res.send(results);
     });
 };
-getArticles = async (req, res) => {
+getProducts = async (req, res) => {
     const connection = await getConnection();
-    await connection.query('SELECT article_id,title, article.data, user.username, article.created_at from article JOIN articlesUsers ON article.article_id = articlesUsers.article JOIN user ON user.user_id = articlesUsers.user', function (error, results) {
+    await connection.query('SELECT product_id,title, user.username, description, price, product.created_at from product JOIN user ON product.user_id = user.user_id', function (error, results) {
         res.send(results);
     });
 };
-createArticle = async (req,res) => {
+createProduct = async (req,res) => {
     const connection = await getConnection();
-    let body = req.body;
+    let body = req.body
+    let description = body.description;
+    let price = body.price;
     let title = body.title;
     let userId = body.userId;
     let slug = body.slug;
-    if( !title || !userId || !slug) {
+    console.log(title)
+    if( !title || !userId || !slug || !price) {
         res.sendStatus(400);
         return;
     }
@@ -61,9 +65,8 @@ createArticle = async (req,res) => {
         res.sendStatus(404);
         return;
     }
-    connection.query("INSERT INTO article set ?", {title: title,slug:slug, data : JSON.stringify(body), created_at : new Date()},function (error, results) {
-        let articleId = results.insertId;
-        connection.query("INSERT INTO articlesUsers set ?", {user : userId, article : articleId })
+    connection.query("INSERT INTO product set ?", {title: title,slug:slug, description : description, price : price, user_id : userId, created_at : new Date()},function (error, results) {
+        console.log(error)
     });
     res.sendStatus(200)
 
@@ -83,14 +86,14 @@ createSlug = async (req,res) => {
 };
 
 module.exports = {
-    getArticle: async (req,res) => {
-        await getArticle(req, res);
+    getProduct: async (req,res) => {
+        await getProduct(req, res);
     },
-    getArticles: async (req, res) => {
-        await getArticles(req, res);
+    getProducts: async (req, res) => {
+        await getProducts(req, res);
     },
-    createArticle : async (req,res) => {
-        await createArticle(req,res)
+    createProduct : async (req,res) => {
+        await createProduct(req,res)
     },
     createSlug : async (req,res) =>{
         await createSlug(req,res)
