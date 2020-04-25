@@ -3,7 +3,7 @@ const mysql = require('promise-mysql');
 let params = {
     host: `localhost`,
     user: `sylvain`,
-    password: `Zg4nwp6jim`,
+    password: `2459`,
     database: `adl`,
 };
 // A schema is a collection of type definitions (hence "typeDefs")
