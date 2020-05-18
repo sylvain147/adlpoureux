@@ -62,3 +62,12 @@ Gris foncé : #404040
 - Générateur de facture
 - CRUD produit
 - Gestionnaire utilisateurs
+
+# variables d'environnement
+DB_HOST
+DB_USER
+DB_PASSWORD
+DB_NAME
+AWS_ACCESS
+AWS_SECRET
+AWS_BUCKET_NAME

@@ -2,8 +2,8 @@ const {ApolloServer, gql} = require('apollo-server');
 const mysql = require('promise-mysql');
 let params = {
     host: `localhost`,
-    user: `sylvain`,
-    password: `2459`,
+    user: `root`,
+    password: `Zg4nwp6jim`,
     database: `adl`,
 };
 // A schema is a collection of type definitions (hence "typeDefs")
