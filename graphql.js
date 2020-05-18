@@ -2,7 +2,7 @@ const {ApolloServer, gql} = require('apollo-server');
 const mysql = require('promise-mysql');
 let params = {
     host: `localhost`,
-    user: `root`,
+    user: `sylvain`,
     password: `Zg4nwp6jim`,
     database: `adl`,
 };
